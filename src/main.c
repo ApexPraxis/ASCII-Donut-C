@@ -2,14 +2,30 @@
 
 int main(void)
 {
-    double x = 2.0;
-    double y = 3.0;
+    char screen[5][10];
 
-    int screenX = (int)(x * 10 + 40);
-    int screenY = (int)(y * 5 + 12);
+    // Fill the screen with dots
+    for (int row = 0; row < 5; row++)
+    {
+        for (int col = 0; col < 10; col++)
+        {
+            screen[row][col] = '.';
+        }
+    }
 
-    printf("Original coordinates: (%.1f, %.1f)\n", x, y);
-    printf("Screen coordinates: (%d, %d)\n", screenX, screenY);
+    // Place a star
+    screen[2][4] = '*';
+
+    // Print the screen
+    for (int row = 0; row < 5; row++)
+    {
+        for (int col = 0; col < 10; col++)
+        {
+            printf("%c", screen[row][col]);
+        }
+
+        printf("\n");
+    }
 
     return 0;
 }
