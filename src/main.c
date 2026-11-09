@@ -14,7 +14,8 @@ int main(void)
     }
 
     // Place a star
-    screen[2][4] = '*';
+    screen[1][2] = '*';
+    screen[3][5] = '*';
 
     // Print the screen
     for (int row = 0; row < 5; row++)
