@@ -1,18 +1,18 @@
 #include<stdio.h>
 int main(){
-char screen[5][10];
-for(int y = 0; y < 5; y++){
-    for(int x = 0; x < 10; x++){
+char screen[8][15];
+for(int y = 0; y < 8; y++){
+    for(int x = 0; x < 15; x++){
         screen[y][x] = '.';
-         if( y == 0 || y == 4 || x == 0 || x == 9){
+         if( y == 0 || y == 7 || x == 0 || x == 14){
          screen[y][x] = '*';
     }
 }
 } 
 
-for (int y = 0; y < 5; y++)
+for (int y = 0; y < 8; y++)
 {
-    for (int x = 0; x < 10; x++)
+    for (int x = 0; x < 15; x++)
     {
         printf("%c", screen[y][x]);
     }
