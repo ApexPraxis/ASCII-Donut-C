@@ -1,24 +1,28 @@
-#include<stdio.h>
-int main(){
-char screen[8][15];
-for(int y = 0; y < 8; y++){
-    for(int x = 0; x < 15; x++){
-        screen[y][x] = '.';
-         if( y == 0 || y == 7 || x == 0 || x == 14){
-         screen[y][x] = '*';
-    }
-}
-} 
+#include <stdio.h>
+#include <math.h>
 
-for (int y = 0; y < 8; y++)
+#define WIDTH 80
+#define HEIGHT 24
+
+int main(void)
 {
-    for (int x = 0; x < 15; x++)
-    {
-        printf("%c", screen[y][x]);
-    }
+    float R = 2.0;
+    float r = 1.0;
 
-    printf("\n");
-}
+    float theta, phi;
+
+    for (theta = 0; theta < 6.28318; theta += 0.1)
+    {
+        for (phi = 0; phi < 6.28318; phi += 0.05)
+        {
+            float x = (R + r * cos(phi)) * cos(theta);
+            float y = (R + r * cos(phi)) * sin(theta);
+            float z = r * sin(phi);
+
+            printf("x = %7.3f | y = %7.3f | z = %7.3f\n",
+                   x, y, z);
+        }
+    }
 
     return 0;
 }
