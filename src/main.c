@@ -127,13 +127,13 @@ int main(void)
         fflush(stdout);
 
         // Update rotation
-        A += 0.04f;
-        B += 0.02f;
+      A += 0.08f;
+B += 0.04f;
 
         // Small delay
         clock_t start = clock();
 
-        while ((double)(clock() - start) / CLOCKS_PER_SEC < 0.03)
+        while ((double)(clock() - start) / CLOCKS_PER_SEC < 0.02)
         {
         }
     }
