@@ -1,27 +1,38 @@
+
 #include <stdio.h>
 #include <math.h>
+#include <string.h>
 
 #define WIDTH 80
 #define HEIGHT 24
 
 int main(void)
 {
-    float R = 2.0;
-    float r = 1.0;
+    char screen[HEIGHT][WIDTH];
+    float zbuffer[HEIGHT][WIDTH];
 
-    float theta, phi;
-
-    for (theta = 0; theta < 6.28318; theta += 0.1)
+    // Initialize both buffers
+    for (int y = 0; y < HEIGHT; y++)
     {
-        for (phi = 0; phi < 6.28318; phi += 0.05)
+        for (int x = 0; x < WIDTH; x++)
         {
-            float x = (R + r * cos(phi)) * cos(theta);
-            float y = (R + r * cos(phi)) * sin(theta);
-            float z = r * sin(phi);
-
-            printf("x = %7.3f | y = %7.3f | z = %7.3f\n",
-                   x, y, z);
+            screen[y][x] = ' ';
+            zbuffer[y][x] = 0.0;
         }
+    }
+
+    // Test the screen
+    screen[HEIGHT / 2][WIDTH / 2] = '*';
+
+    // Print the screen
+    for (int y = 0; y < HEIGHT; y++)
+    {
+        for (int x = 0; x < WIDTH; x++)
+        {
+            printf("%c", screen[y][x]);
+        }
+
+        printf("\n");
     }
 
     return 0;
