@@ -19,7 +19,7 @@ int main(void)
     float K1 = 40.0f;
     float K2 = 8.0f;
 
-   const char shades[] = " .'`^\",:;Il!i~+_-?][}{1)(|\\/*tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$";
+    const char shades[] = " .'`^\",:;Il!i~+_-?][}{1)(|\\/*tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$";
 
     float lx = -0.4f;
     float ly = 0.6f;
@@ -102,7 +102,7 @@ int main(void)
                     {
                         zbuffer[screenY][screenX] = invDepth;
 
-                     int shade = (int)(brightness * (sizeof(shades) - 2));
+                        int shade = (int)(brightness * (sizeof(shades) - 2));
 
                         screen[screenY][screenX] = shades[shade];
                     }
