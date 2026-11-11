@@ -127,8 +127,8 @@ int main(void)
         fflush(stdout);
 
         // Update rotation
-      A += 0.08f;
-B += 0.04f;
+        A += 0.08f;
+        B += 0.04f;
 
         // Small delay
         clock_t start = clock();
