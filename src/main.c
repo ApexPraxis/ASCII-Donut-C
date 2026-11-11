@@ -12,31 +12,27 @@ int main(void)
     char screen[HEIGHT][WIDTH];
     float zbuffer[HEIGHT][WIDTH];
 
-    // Donut dimensions
     float R = 2.0f;
     float r = 1.0f;
-
-    // Rotation angles
     float A = 0.8f;
     float B = 0.8f;
 
-    // Projection settings
     float K1 = 36.0f;
     float K2 = 8.0f;
 
-    // ASCII shading characters
     const char shades[] = " .:-=+*#%@";
 
-    // Light direction
     float lx = -0.4f;
     float ly = 0.6f;
     float lz = -0.7f;
 
-    // Animation loop
+    // Clear terminal once before animation starts
+    printf("\033[2J");
+    fflush(stdout);
+
     while (1)
     {
-        printf("\033[2J\033[H");
-        // Initialize buffers
+        // Reset screen and depth buffer
         for (int y = 0; y < HEIGHT; y++)
         {
             for (int x = 0; x < WIDTH; x++)
@@ -46,14 +42,13 @@ int main(void)
             }
         }
 
-        // Generate the torus
+        // Generate donut
         for (float theta = 0; theta < 2 * PI; theta += 0.04f)
         {
             for (float phi = 0; phi < 2 * PI; phi += 0.04f)
             {
                 float ct = cosf(theta);
                 float st = sinf(theta);
-
                 float cp = cosf(phi);
                 float sp = sinf(phi);
 
@@ -80,16 +75,14 @@ int main(void)
                 int screenX = (int)(WIDTH / 2 + K1 * x1 * invDepth);
                 int screenY = (int)(HEIGHT / 2 - K1 * 0.5f * y1 * invDepth);
 
-                // Surface normal
+                // Rotate surface normal
                 float nx = cp * ct;
                 float ny = cp * st;
                 float nz = sp;
 
-                // Rotate normal around Y
                 float nx1 = nx * cosf(B) + nz * sinf(B);
                 float nz1 = -nx * sinf(B) + nz * cosf(B);
 
-                // Rotate normal around X
                 float ny1 = ny * cosf(A) - nz1 * sinf(A);
                 float nz2 = ny * sinf(A) + nz1 * cosf(A);
 
@@ -102,11 +95,10 @@ int main(void)
                 if (brightness > 1.0f)
                     brightness = 1.0f;
 
-                // Screen boundaries
+                // Depth testing and shading
                 if (screenX >= 0 && screenX < WIDTH &&
                     screenY >= 0 && screenY < HEIGHT)
                 {
-                    // Depth testing
                     if (invDepth > zbuffer[screenY][screenX])
                     {
                         zbuffer[screenY][screenX] = invDepth;
@@ -119,6 +111,10 @@ int main(void)
             }
         }
 
+        // Move cursor to top-left without clearing every frame
+        printf("\033[H");
+
+        // Print frame
         for (int y = 0; y < HEIGHT; y++)
         {
             for (int x = 0; x < WIDTH; x++)
@@ -129,11 +125,13 @@ int main(void)
             printf("\n");
         }
 
-        // Update rotation angles
+        fflush(stdout);
+
+        // Update rotation
         A += 0.04f;
         B += 0.02f;
 
-        // Frame delay
+        // Small delay
         clock_t start = clock();
 
         while ((double)(clock() - start) / CLOCKS_PER_SEC < 0.03)
