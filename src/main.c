@@ -35,6 +35,7 @@ int main(void)
     // Animation loop
     while (1)
     {
+        printf("\033[2J\033[H");
         // Initialize buffers
         for (int y = 0; y < HEIGHT; y++)
         {
@@ -117,9 +118,6 @@ int main(void)
                 }
             }
         }
-
-        // Print the donut
-        printf("\033[H");
 
         for (int y = 0; y < HEIGHT; y++)
         {
