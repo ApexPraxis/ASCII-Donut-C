@@ -1,5 +1,5 @@
 # 🍩 ASCII Donut C
-## 🎬 Demo
+
 
 ![ASCII Donut Animation](demo.gif)
 
