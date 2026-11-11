@@ -2,6 +2,8 @@
 ## 🎬 Demo
 
 ![ASCII Donut Animation](demo.gif)
+
+
 A rotating 3D ASCII donut rendered directly in the terminal using **C**.
 
 This project explores the fundamentals of 3D graphics, including mathematical rotation, perspective projection, depth buffering, and ASCII shading — all without graphics libraries.
