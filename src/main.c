@@ -8,24 +8,15 @@
 
 int main(void)
 {
-
     char screen[HEIGHT][WIDTH];
     float zbuffer[HEIGHT][WIDTH];
+
     float K1 = 30.0;
     float K2 = 5.0;
 
     float x = 2.0;
     float y = 1.0;
     float z = 2.0;
-
-    int screenX = (int)(K1 * x / (K2 + z) + WIDTH / 2);
-    int screenY = (int)(K1 * y / (K2 + z) + HEIGHT / 2);
-
-    if (screenX >= 0 && screenX < WIDTH &&
-        screenY >= 0 && screenY < HEIGHT)
-    {
-        screen[screenY][screenX] = '*';
-    }
 
     // Initialize both buffers
     for (int y = 0; y < HEIGHT; y++)
@@ -37,8 +28,16 @@ int main(void)
         }
     }
 
-    // Test the screen
-    screen[HEIGHT / 2][WIDTH / 2] = '*';
+    // Project 3D coordinates onto the 2D screen
+    int screenX = (int)(K1 * x / (K2 + z) + WIDTH / 2);
+    int screenY = (int)(K1 * y / (K2 + z) + HEIGHT / 2);
+
+    // Draw the projected point
+    if (screenX >= 0 && screenX < WIDTH &&
+        screenY >= 0 && screenY < HEIGHT)
+    {
+        screen[screenY][screenX] = '*';
+    }
 
     // Print the screen
     for (int y = 0; y < HEIGHT; y++)
