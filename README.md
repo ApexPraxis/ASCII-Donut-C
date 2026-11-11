@@ -1,7 +1,4 @@
 # 🍩 ASCII Donut C
-## 🎬 Demo
-
-[▶ Watch the ASCII Donut animation](demo.mp4)
 
 A rotating 3D ASCII donut rendered directly in the terminal using **C**.
 
